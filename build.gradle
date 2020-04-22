@@ -9,9 +9,6 @@
 plugins {
     // Apply the java plugin to add support for Java
     id 'java'
-
-    // Apply the application plugin to add support for building a CLI application.
-    id 'application'
 }
 
 repositories {
@@ -21,19 +18,14 @@ repositories {
 }
 
 dependencies {
-    // This dependency is used by the application.
-    implementation 'com.google.guava:guava:28.2-jre'
+    // https://mvnrepository.com/artifact/junit/junit
+    testCompile group: 'junit', name: 'junit', version: '4.13'
 
-    // Use TestNG framework, also requires calling test.useTestNG() below
-    testImplementation 'org.testng:testng:7.0.0'
-}
+    // https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java
+    compile group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '3.141.59'
 
-application {
-    // Define the main class for the application.
-    mainClassName = 'com.example.selenium.App'
 }
 
 test {
-    // Use TestNG for unit tests
-    useTestNG()
+    useJUnit()
 }
