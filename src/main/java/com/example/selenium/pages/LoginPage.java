@@ -1,29 +1,37 @@
 package com.example.selenium.pages;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.How;
 
 public class LoginPage extends BasePage {
-    By email = By.id("auth_email");
-    By password = By.id("auth_pass");
-    By submit = By.cssSelector(".auth-modal__submit");
+
+    @FindBy(how = How.ID, using = "auth_email")
+    private WebElement email;
+
+    @FindBy(how = How.ID, using = "auth_pass")
+    private WebElement password;
+
+    @FindBy(how = How.CSS, using = ".auth-modal__submit")
+    private WebElement submit;
 
     public LoginPage(WebDriver driver) {
         super(driver);
     }
 
     public LoginPage setEmail(String text) {
-        driver.findElement(email).sendKeys(text);
+        email.sendKeys(text);
         return this;
     }
 
     public LoginPage setPassword(String text) {
-        driver.findElement(password).sendKeys(text);
+        password.sendKeys(text);
         return this;
     }
 
     public LoginPage clickSubmit() {
-        driver.findElement(submit).click();
+        submit.click();
         return this;
     }
 }

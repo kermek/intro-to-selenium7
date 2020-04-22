@@ -1,46 +1,61 @@
 package com.example.selenium.pages;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.How;
 
 public class MainPage extends BasePage {
-    By login = By.linkText("войдите в личный кабинет");
-    By search = By.name("search");
-    By find = By.cssSelector(".search-form__submit");
-    By found = By.xpath("(//a[contains(@href, 'apple_macbook_air_2020')])");
-    By name = By.linkText("иван");
-    By exit = By.linkText("Выход");
+
+    @FindBy(how = How.LINK_TEXT, using = "войдите в личный кабинет")
+    private WebElement login;
+
+    @FindBy(how = How.NAME, using = "search")
+    private WebElement search;
+
+    @FindBy(how = How.CSS, using = ".search-form__submit")
+    private WebElement find;
+
+    @FindBy(how = How.XPATH, using = "(//a[contains(@href, 'apple_macbook_air_2020')])")
+    private WebElement found;
+
+    @FindBy(how = How.LINK_TEXT, using = "иван")
+    private WebElement name;
+
+    @FindBy(how = How.LINK_TEXT, using = "Выход")
+    private WebElement exit;
+
     public MainPage(WebDriver driver) {
         super(driver);
     }
 
     public LoginPage clickLogin() {
-        driver.findElement(login).click();
+        login.click();
         return new LoginPage(driver);
     }
 
     public MainPage setSearch(String text) {
-        driver.findElement(search).sendKeys(text);
+        search.sendKeys(text);
         return this;
     }
 
     public MainPage clickFind() {
-        driver.findElement(find).click();
+        find.click();
         return this;
     }
 
     public ProductPage clickFound() {
-        driver.findElement(found).click();
+        found.click();
         return new ProductPage(driver);
     }
 
     public MainPage clickName() {
-        driver.findElement(name).click();
+        name.click();
         return this;
     }
 
     public MainPage clickExit() {
-        driver.findElement(exit).click();
+        exit.click();
         return this;
     }
 }
